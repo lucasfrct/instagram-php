@@ -1,0 +1,9 @@
+$filter = '-filter:v "crop=(iw/2.9):ih"';
+
+$transpose = ( $transpose == "landscape" ) ? "1" : "4";
+
+$broadcastProcess = $ffmpeg->runAsync(sprintf(
+    '-rtbufsize 256M -re -i %s -acodec libmp3lame -ar 44100 -b:a 2500k -pix_fmt yuv420p -profile:v baseline -s 1080x1920 -bufsize 8000k -vb 6000k -maxrate 10000k -minrate 4000k -b:v 8000k -deinterlace -vcodec libx264 -preset veryfast -g 30 -r 30 -vf "transpose='.$transpose.'" '.$filter.' -preset ultrafast -tune zerolatency -f flv %s',
+    \Winbox\Args::escape($videoFilename),
+    \Winbox\Args::escape($streamUploadUrl)
+));

@@ -1,0 +1,99 @@
+<style>
+    
+    .stream-key,
+    .stream-form {
+        background-color: rgba(255,255,255,0.85);
+        border-radius: 4px; 
+        box-sizing: border-box;
+        clear: both;
+        color: #424242;
+    }
+    
+    .stream-form {
+        padding: 8px;
+    }
+
+    .stream-form legend {
+        margin: 24px 0 0 16px;
+
+    }
+
+    .stream-form button {
+        margin-bottom: 40px;
+    }
+    
+    .stream-key {
+        margin-top: 48px;
+        margin-bottom: 24px;
+        word-wrap: break-word !important;
+        word-break: break-word;
+        display: block;
+        text-align: justify;
+        padding: 12px 24px 32px 24px !important;
+    }
+
+    .stream-key .sufix {
+        position: absolute;
+        right: 0px;
+        -webkit-transition: color .2s;
+        transition: color .2s;
+    }
+
+    .stream-key textarea {
+        height: auto;
+        outline: none;
+        border: solid 1px rgba(0,0,0,0.05)
+    }
+</style>
+ 
+<form class="stream-form col s10 offset-s1 m8 offset-m2 l6 offset-l3" ng-show="control.form" >
+
+    <div class="progress" ng-show="control.bar">
+        <div class="indeterminate"></div>
+    </div> 
+
+    <legend>LOGIN PARA INSTAGRAM</legend>
+
+    <div class="input-field col s12" ng-show="!control.code">
+        <i class="material-icons prefix">account_circle</i>
+        <input id="user" type="text" class="validate" ng-model="stream.user">
+        <label for="user">Usuário</label>
+    </div>
+
+    <div class="input-field col s12" ng-show="!control.code">
+        <i class="material-icons prefix">lock_outline</i>
+        <input id="password" type="password" class="validate" ng-model="stream.password">
+        <label for="password">Senha</label>
+    </div>
+
+    <div class="input-field col s12" ng-show="control.code">
+        <i class="material-icons prefix">message</i>
+        <input id="code" type="text" class="validate active" ng-model="code">
+        <label for="code">Code</label>
+    </div>
+    
+    <button class="btn waves-effect waves-light col s8 offset-s1 m6 offset-m1" ng-click="getstream(stream)" >Submit
+        <i class="material-icons right">send</i>
+    </button>
+    
+</form>
+
+<section class="stream-key col s10 offset-s1 m8 offset-m2 l6 offset-l3" ng-init="loaded()">
+   
+    <h5>Servidor</h5>
+    
+    <div class="input-field col s12">
+        <input id="server" type="text" class="validate active" ng-model="stream.server" >
+        <label for="server">Servidor de stream</label>
+        <button class="btn sufix" ng-click="copy('server')">copiar</button>
+    </div>
+
+    <h5>Chave de trasmissão</h5>
+
+    <div class="input-field col s12">
+        <input id="key" type="text" class="validate active" ng-model="stream.key">
+        <label for="key">Chave do Servidor</label>
+        <button class="btn sufix" ng-click="copy('key')">copiar</button>
+    </div>
+
+</section>

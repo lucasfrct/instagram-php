@@ -1,0 +1,198 @@
+<style>
+    .form {
+        background-color: #3B4046;
+        max-width: 500px;
+        margin: auto;
+        margin-top: 80px;
+        padding: 40px;
+        position: relative;
+    }
+
+    .form::after {
+        content: "";
+        display: block;
+        clear: both;
+    }
+
+    .form input,
+    .form input[disabled] {
+        color: #FFF;
+    }
+
+    .form .stay i {
+        color: #000;
+        margin: 0 4px;
+        padding: 0 12px;
+        float: left;
+    }
+
+    .legend {
+       font-size: 1.3em; 
+    }
+
+    .form .inative {
+        background-color: rgba(255,0,0,0.2) !important;
+        color: rgba(255, 255, 255, 0.4) !important;
+    }
+
+    .form .btn {
+        cursor: pointer;
+    }
+
+    .form .live {
+        font-size: 70px;
+    }
+
+    .form .time {
+        font-size: 1em;
+        float: right;
+        position: absolute;
+        right: 48px;
+        top: 104px;
+    }
+
+    .form .live.active {
+        color: #F00;
+        animation: blinker 1.5s linear infinite;
+    }
+
+    @keyframes blinker {
+        50% {
+            opacity: 0;
+        }
+    }
+
+   
+    .loop {
+        background-color: #DDD;
+    }
+
+    .loop.active {
+        background-color: #F00;
+    }
+
+    .modal-footer a {
+        right: 24px;
+        top: -12px;
+    }
+
+</style>
+
+<section class="row">
+    
+    <div class="s12">
+        <form class="form">
+            <i class="material-icons right live {{ (stream.connection) ? 'active' : '' }}">cast_connected</i>
+            <span class="time">{{control.time}}</span>
+            <legend>
+                <h4><i class="material-icons left legend">live_tv</i> Stream Video</h4>
+            </legend>
+
+            <div class="input-field col s6">
+                <input id="user" type="text" class="validate" ng-model="stream.user">
+                <label class="active" for="user">Usuário</label>
+            </div>
+
+            <div class="input-field col s6">
+                <input id="password" type="password" class="validate" ng-model="stream.password">
+                <label class="active" for="password">Senha</label>
+            </div>
+            
+            <div class="input-field col s12">
+                Digite uma Unidade de Disco
+            </div>
+            <div class="input-field col s8">
+                
+                <div class="file-path-wrapper col s8">
+                    <i class="material-icons prefix left">folder_open</i>
+                    <input class="file-path validate" type="text" ng-model="stream.disk">
+                </div>
+                <div 
+                    class="btn blue lighten-1 waves-effect waves-light col s4" 
+                    ng-click="loadStream(stream)"
+                    ng-disabled="!stream.disk"
+                >
+                    <span>Load</span>
+                </div>
+            </div>
+            <div class="file-field input-field col s4 stay">
+                <i class="
+                    material-icons 
+                    left btn 
+                    waves-effect 
+                    waves-red 
+                    blue-grey 
+                    lighten-5
+                    {{ (control.landscape) ? '' : 'inative' }}" 
+                    ng-click="togglePosition()"
+                >stay_current_landscape</i>
+                <i class="
+                    material-icons 
+                    left btn 
+                    waves-effect 
+                    waves-red 
+                    blue-grey 
+                    lighten-5
+                    {{ (control.portrait) ? '' : 'inative' }}"
+                    ng-click="togglePosition()"
+                >stay_current_portrait</i>
+            </div>
+
+            <div class="input-field col s12">
+                <i class="material-icons prefix left">ondemand_video</i>
+                <input class="validate" ng-model="stream.path" ng-disabled="true" >
+            </div>
+
+            <div class="file-field input-field col s2">
+                <a 
+                    class="waves-effect waves-light btn-large col s12 loop {{ (stream.loop) ? 'active' : '' }}" 
+                    ng-click="loopStream(stream)"
+
+                >
+                    {{control.counter}}<i class="material-icons left">loop</i>
+                </a>
+            </div>
+
+            <div class="file-field input-field col s6">
+                <a class="waves-effect waves-light btn-large red darken-1 col s12" ng-click="playStream(stream)">
+                    <i class="material-icons left">play_arrow</i>Stream
+                    <i class="material-icons right">tap_and_play</i>
+                </a>
+            </div>
+
+            <div class="file-field input-field col s4">
+                <a class="waves-effect waves-light btn-large blue-grey darken-1 col s12" ng-click="stopStream(stream)">
+                    <i class="material-icons left">stop</i>Stop
+                </a>
+            </div>
+
+        </form>
+    </div>
+
+    
+
+    <!-- Modal Structure -->
+    <div modal="control.modal">
+        <div class="modal-content black-text">
+            <path disk></path>
+        </div>
+        <div class="modal-footer">
+            <a href="" class="waves-effect waves-green btn red darken-2" ng-click="toggleModal()">Fechar seleção</a>
+        </div>
+    </div>
+
+     <!-- Modal Structure -->
+     <div modal="control.required">
+        <div class="modal-content black-text">
+            <h4>Code de Autenticação</h4>
+            <div class="input-field col s6">
+                <input id="code" type="text" class="validate" ng-model="stream.code">
+                <label class="active" for="code">Digite o código</label>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <a href="" class="waves-effect waves-green btn green darken-2" ng-click="playStream(stream)">Enviar</a>
+        </div>
+    </div>
+
+</section>

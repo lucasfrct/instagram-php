@@ -1,0 +1,116 @@
+
+
+body > form {
+    padding: 24px;
+    max-width: 300px;
+    background: rgba(255,255,255,0.9);
+    color: #424242;
+    border-radius: 8px;
+    border: solid 1px #CCC;
+    box-shadow: 0px 2px 20px rgba(0,0,0,0.3), 1px 5px 50px rgba(0,0,0,0.4);
+    font-size: 1rem;
+}
+
+body > form > * {
+    display: block;
+    width: 100% !important;
+    margin: 0;
+}
+
+body form > legend {
+    font-weight: 700;
+    font-size: 1.1em;
+    text-align: center;
+}
+
+body form > div input, 
+body form > div label {
+    font-size: 1em !important;
+}
+
+body form > button {
+    font-size: 1.4em !important;
+    font-weight: 900 !important;
+    height: auto !important;
+    padding: 4px 8px !important;
+    display: block;
+    width: 100%;
+    background-color: #FA7E1E !important;
+}
+
+body form > .form-bar {
+    height: 10px;
+    border-radius: 8px;
+    display: none;
+}
+
+body form > .form-bar .progressbar {
+    background-color: #D62976 !important;
+    border-radius: 4px
+}
+
+body form > .form-bar .bufferbar {
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background-image: none !important;
+    background-color: rgba(214, 41, 118, 0.2) !important;
+}
+
+body form > .form-bar .auxbar {
+    background-image: none !important;
+    background-color: rgba(214, 41, 118, 0.1) !important;
+}
+
+body section h5 {
+    font-weight: 700;
+}
+
+body section > span {
+    word-wrap: break-word !important;
+    word-break: break-word;
+    display: block;
+    text-align: justify;
+    font-size: 1rem;
+    line-height: 1.4rem; 
+    background-color: rgba(255,255,255,0.9);
+    padding: 8px 16px;
+    border-radius: 4px;
+    color: #848484;
+    box-shadow: 0px 2px 10px #767676;
+    min-width: 150px;
+    min-height: 36px;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+
+body .error {
+    position: fixed;
+    top: 30vw;
+    left: 5vw;
+    margin: auto;
+    font-size: 1.5em;
+    display: none;
+    z-index: 1;
+}
+
+body .error::after {
+    content: "";
+    display: block;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0,0,0,0.5);
+    position: fixed;
+    z-index: -1 !important;
+    top: 0;
+    left: 0;
+}
+
+body .error p {
+    color: #F00;
+    background-color: #FFF;
+    padding: 24px;
+    width: calc(90vw - 48px);
+    min-height: 24px;
+    border-radius: 8px;
+}
